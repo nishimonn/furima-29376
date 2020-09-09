@@ -44,12 +44,12 @@
 
 | Column | Type       | Options                        |
 | ------ | ---------- | ------------------------------ |
-| items | references | null: false foreign_key: true |
+| item | references | null: false foreign_key: true |
 | user | references | null: false foreign_key: true |
 ### Association
 
-- has_many :users
-- has_many :items
+- belongs_to :user
+- belongs_to :item
 - has_one :shipping_address
 
 ## shipping_address
