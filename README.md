@@ -17,7 +17,7 @@
 ### Association
 
 - has_many :items
-- has_many :buy
+- has_many :buys
 
 
 ## items テーブル
@@ -32,7 +32,7 @@
 | shipping_region | integer | nill: false |
 | days_until_shipping | integer | nill: false |
 | selling_price | integer | nill: false |
-| user   | references | null: false, foreign_key: true |
+| user | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -55,12 +55,13 @@
 ## shipping_address
 | Column | Type       | Options                        |
 | ------ | ---------- | ------------------------------ |
-| postal_code | integer | null: false |
-| prefectures | text | nill: false |
-| city | text | null: false |
-| address | text | null: false |
-| building_name | text | nill: false |
-| phone_number | integer | nill: false |
+| postal_code | string | null: false |
+| prefectures | integer | nill: false |
+| city | string | null: false |
+| address | string | null: false |
+| building_name | string |             |
+| phone_number | string | nill: false |
+| buy | references | null: false foreign_key: true |
 
 
 - belongs_to :buy
