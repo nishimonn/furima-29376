@@ -9,8 +9,8 @@
 | password | string | null: false |
 | family_name | string | nill: false |
 | first_name| string | null: false |
-| family_name(フリガナ) | string | nill: false |
-| first/name(フリガナ) | string | nill: false |
+| family_name_kana | string | nill: false |
+| first_name_kana | string | nill: false |
 | birthday | date | nill: false |
 
 
@@ -25,26 +25,27 @@
 | Column | Type   | Options     |
 | ------ | ------ | ----------- |
 | items_name | text | null: false |
-| 商品説明 | text | nill: false |
-| カテゴリー | integer | nill: false |
-| 商品状態 | integer | nill: false |
-| 配送料の負担 | integer | nill: false |
-| 発送元の地域 | integer | nill: false |
-| 発送までの日数 | integer | nill: false |
-| selling price | integer | nill: false |
+| item_description | text | nill: false |
+| category | integer | nill: false |
+| items_condition | integer | nill: false |
+| shipping_fee_burden | integer | nill: false |
+| shipping_region | integer | nill: false |
+| days_until_shipping | integer | nill: false |
+| selling_price | integer | nill: false |
+| user   | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :users
-- has_many :buy
+- belongs_to :user
+- has_one :buy
 
 
-## buy テーブル
+## buys テーブル
 
 | Column | Type       | Options                        |
 | ------ | ---------- | ------------------------------ |
-| items_id | references | null: false |
-| user_id | references | null: false |
+| items | references | null: false foreign_key: true |
+| user | references | null: false foreign_key: true |
 ### Association
 
 - has_many :users
@@ -54,6 +55,12 @@
 ## shipping_address
 | Column | Type       | Options                        |
 | ------ | ---------- | ------------------------------ |
-| shipping_address | text | null: false |
+| postal_code | integer | null: false |
+| prefectures | text | nill: false |
+| city | text | null: false |
+| address | text | null: false |
+| building_name | text | nill: false |
+| phone_number | integer | nill: false |
 
-- has_one :buy
+
+- belongs_to :buy
