@@ -26,11 +26,11 @@
 | ------ | ------ | ----------- |
 | items_name | text | null: false |
 | item_description | text | nill: false |
-| category | integer | nill: false |
-| items_condition | integer | nill: false |
-| shipping_fee_burden | integer | nill: false |
-| shipping_region | integer | nill: false |
-| days_until_shipping | integer | nill: false |
+| category_id | integer | nill: false foreign_key: true |
+| items_condition_id | integer | nill: false foreign_key: true |
+| shipping_fee_burden_id | integer | nill: false foreign_key: true |
+| shipping_region_id | integer | nill: false foreign_key: true |
+| days_until_shipping_id | integer | nill: false foreign_key: true |
 | selling_price | integer | nill: false |
 | user | references | null: false, foreign_key: true |
 
@@ -56,7 +56,7 @@
 | Column | Type       | Options                        |
 | ------ | ---------- | ------------------------------ |
 | postal_code | string | null: false |
-| prefectures | integer | nill: false |
+| prefectures_id | integer | nill: false foreign_key: true |
 | city | string | null: false |
 | address | string | null: false |
 | building_name | string |             |
