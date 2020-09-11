@@ -4,16 +4,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  with_options presence: true do
-    validates :nick_name, :family_name, :first_name, :birthday presence: 
-    validates :email, uniqueness: 
-    validates :email, inclusion: { in: %w(draft publish private) }
-    validates :password, length: { minimum: 6 }
-    validates :password, hankakueisuu:
-    validates :password, nikainyuuryoku:
-    validates :family_name, :first_name, format: {with: /\A[ぁ-んァ-ン一-龥]+\z/}
-    validates :family_name, :first_name, hurugana:
-    #validates :name_reading, format:{with: /\A[ァ-ヶー－]+\z/}
-  end
+    with_options presence: true do
+      validates :nick_name, :family_name, :first_name, :birthday#ニックネーム、苗字、名前、生年月日は必須
+    end
+
+    validates :password, format: {with: /\A[a-zA-Z][0-9]+\z/} #パスワードは半角英数字。
+    validates :family_name, :first_name, format: {with: /\A[ぁ-んァ-ン一-龥]+\z/}#本名は全角（漢字・ひらがな・カタカナ）で入力
+    validates :family_name_kana, :first_name_kana, format: {with: /\A[ァ-ヶー－]+\z/}#本名のフリガナの表現がわからない
+     
 
 end
