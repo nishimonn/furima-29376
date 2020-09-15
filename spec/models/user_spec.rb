@@ -44,11 +44,11 @@ RSpec.describe User, type: :model do
       expect(@user).to be_valid
     end
 
-    # it "passwordは半角英数字混合であること" do
-    #   @user.password = "/\A[a-zA-Z][0-9]+\z/"
-    #   @user.password_confirmation = "/\A[a-zA-Z][0-9]+\z/"
-    #   expect(@user).to be_valid
-    # end
+    it "passwordは半角英数字混合であること" do
+      @user.password = "aaaaaa"
+      @user.password_confirmation = "aaaaaa"
+      expect(@user).to be_valid
+    end
 
     it "passwordは確認用含めて2回入力すること=passwordが存在してもpassword_confirmationが空では登録できないこと" do
       @user.password_confirmation = ""
