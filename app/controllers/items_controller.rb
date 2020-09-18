@@ -9,11 +9,12 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.create(item_params)
-    if @item.save
-      redirect_to root_path(@room)
+    @item = Item.new(item_params)
+    if @item.valid?
+      @item.save
+      redirect_to root_path
     else
-      render :index
+      render :new
     end
   end
 # createをしたい。保存したい値が送信されていなければならない。
