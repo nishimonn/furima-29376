@@ -9,7 +9,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :days_until_shipping
 
   with_options presence: true do
-    validates :items_name, :tems_description, :selling_price, :user
+    validates :items_name, :items_description, :selling_price, :user_id
   end
   validates :category_id, numericality: { other_than: 1 } 
   validates :items_condition_id, numericality: { other_than: 1 } 
