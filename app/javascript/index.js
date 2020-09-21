@@ -2,12 +2,12 @@ window.addEventListener("load", function(){
 const selling_price = document.getElementById("item-price")
 selling_price.addEventListener('input', function(){
   const price = document.getElementById("item-price").value
-  const a = price*0.1
-  const b = price-a
+  const tax = price*0.1
+  const sales_profit = price-tax
   const c = document.getElementById("add-tax-price")
   const d = document.getElementById("profit")
-  c.textContent = a
-  d.textContent = b
+  c.textContent = tax
+  d.textContent = sales_profit
   })
 })
 // ① JSを動かす記述 OK
