@@ -47,4 +47,53 @@ RSpec.describe Item, type: :model do
     @item.valid?
     expect(@item.errors.full_messages).to include("Selling price can't be blank")
   end
+
+  it '価格の範囲が、¥300~¥9,999,999の間であること' do
+    @item.selling_price = '500'
+    expect(@item.selling_price).to be > 300
+    expect(@item.selling_price).to be < 9999999
+  end
+
+  it '販売価格は半角数字のみ入力可能であること' do
+    @item.selling_price = '500'
+    @item.valid?
+    expect(@item.selling_price).to be_valid
+  end
+
+  it '画像は1枚必須であること' do
+    @item.image = ''
+    @item.valid?
+    expect(@item.errors.full_messages).to include("User can't be blank")
+  end
+
+  it "item.category_idが1では出品できないこと" do
+    @item.category_id = 1
+    @item.valid?
+    expect(@item.errors.full_messages).to include("Category must be other than 1")
+  end
+
+  it "items_condition_idが1では出品できないこと" do
+    @item.items_condition_id = 1
+    @item.valid?
+    expect(@item.errors.full_messages).to include("Items condition must be other than 1")
+  end
+
+  it "shipping_fee_burden_idが1では出品できないこと" do
+    @item.shipping_fee_burden_id = 1
+    @item.valid?
+  expect(@item.errors.full_messages).to include("Shipping fee burden must be other than 1")
+  end
+
+  it "shipping_region_idが1では出品できないこと" do
+    @item.shipping_region_id = 1
+    @item.valid?
+  expect(@item.errors.full_messages).to include("Shipping region must be other than 1")
+  end
+
+  it "days_until_shipping_idが1では出品できないこと" do
+    @item.days_until_shipping_id = 1
+    @item.valid?
+    expect(@item.errors.full_messages).to include("Days until shipping must be other than 1")
+  end
+
 end

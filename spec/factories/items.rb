@@ -7,7 +7,7 @@ FactoryBot.define do
     shipping_fee_burden_id { '2' }
     shipping_region_id { '2' }
     days_until_shipping_id { '2' }
-    selling_price { '500円' }
+    selling_price { '500' }
     association :user
   end
 end

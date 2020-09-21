@@ -12,8 +12,11 @@ class Item < ApplicationRecord
   with_options presence: true do
     validates :items_name, :items_description, :selling_price, :user_id, :category_id, :items_condition_id, :shipping_fee_burden_id, :shipping_region_id, :days_until_shipping_id
   end
-  
+
   with_options numericality: { other_than: 1} do
   validates :category_id, :items_condition_id, :shipping_fee_burden_id, :shipping_region_id,:days_until_shipping_id
   end
+  
+  validates :selling_price, format: {with: /\A[a-zA-Z0-9]+\z/}
+  
 end
