@@ -12,9 +12,8 @@ class Item < ApplicationRecord
   with_options presence: true do
     validates :items_name, :items_description, :selling_price, :user_id, :category_id, :items_condition_id, :shipping_fee_burden_id, :shipping_region_id, :days_until_shipping_id
   end
-  validates :category_id, numericality: { other_than: 1 }
-  validates :items_condition_id, numericality: { other_than: 1 }
-  validates :shipping_fee_burden_id, numericality: { other_than: 1 }
-  validates :shipping_region_id, numericality: { other_than: 1 }
-  validates :days_until_shipping_id, numericality: { other_than: 1 }
+  
+  with_options numericality: { other_than: 1} do
+  validates :category_id, :items_condition_id, :shipping_fee_burden_id, :shipping_region_id,:days_until_shipping_id
+  end
 end
