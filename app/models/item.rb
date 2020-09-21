@@ -17,6 +17,6 @@ class Item < ApplicationRecord
   validates :category_id, :items_condition_id, :shipping_fee_burden_id, :shipping_region_id,:days_until_shipping_id
   end
   
-  validates :selling_price, format: {with: /\A[a-zA-Z0-9]+\z/}
-  
+  validates :selling_price, numericality: {with: /\A[0-9]+\z/}
+
 end

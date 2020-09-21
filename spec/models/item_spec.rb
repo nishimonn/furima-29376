@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Item, type: :model do
   before do
-    @item = FactoryBot.build(:item)
+    user = FactoryBot.create(:user)
+    @item = FactoryBot.build(:item, user_id: user.id)
   end
 
   describe '商品出品機能'
@@ -53,27 +54,26 @@ RSpec.describe Item, type: :model do
 
 
   it '299円以下の場合は出品ができない' do
-    @item.selling_price = '500'
+    @item.selling_price = '299'
     @item.valid?
     expect(@item.selling_price).to be >= 299
   end
 
   it '10,000,000円以上の場合は出品ができない' do
-    @item.selling_price = '500'
+    @item.selling_price = '10000000'
     @item.valid?
     expect(@item.selling_price).to be <= 10000000
   end
 
   it '販売価格は半角数字のみ入力可能であること' do
-    @item.selling_price = '500'
+    @item.selling_price = 'aaa'
     @item.valid?
-    expect(@item.selling_price).to be_valid
+    expect(@item.errors.full_messages).to include("Selling price is not a number")
   end
 
   it '画像は1枚必須であること' do
-    @item.image = ''
-    @item.valid?
-    expect(@item.errors.full_messages).to include("User can't be blank")
+    @item.image = nil
+    expect(@item).to be_valid
   end
 
   it "item.category_idが1では出品できないこと" do
