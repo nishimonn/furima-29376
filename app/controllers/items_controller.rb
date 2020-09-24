@@ -38,7 +38,7 @@ class ItemsController < ApplicationController
     if @item.destroy
       redirect_to root_path
     else
-      redirect_to :back
+      render :show
     end
   end
 
