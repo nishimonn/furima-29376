@@ -1,7 +1,7 @@
 class UserShippingAddress
 
   include ActiveModel::Model
-  attr_accessor :user_id, :item_id, :postal_code, :prefectures_id, :city, :address, :building_name, :phone_number
+  attr_accessor :token, :user_id, :item_id, :postal_code, :prefectures_id, :city, :address, :building_name, :phone_number
 
   with_options presence: true do
     #「郵便番号」のバリデーション
@@ -12,6 +12,8 @@ class UserShippingAddress
     validates :address, format: { with: /\A[ぁ-んァ-ン一-龥0-9]+\z/, message: "is invalid. Input full-width characters."}
     #「電話番号」のバリデーション
     validates :phone_number, format: { with: /\A[0-9]+\z/, message: "is invalid. Input half-width characters."}
+    #「金額とトークン」のバリデーション
+    validates :price, :token
   end
   #「建物名」のバリデーション
   validates :building_name, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: "is invalid. Input full-width characters."}
