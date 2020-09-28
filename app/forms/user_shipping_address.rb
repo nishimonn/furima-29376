@@ -1,7 +1,7 @@
-class UserShipping_address
+class UserShippingAddress
 
   include ActiveModel::Model
-  attr_accessor :postal_code, :prefectures_id, :city, :address, :building_name, :phone_number, :buy
+  attr_accessor :user_id, :item_id, :postal_code, :prefectures_id, :city, :address, :building_name, :phone_number
 
   with_options presence: true do
     #「郵便番号」のバリデーション
@@ -16,6 +16,11 @@ class UserShipping_address
   #「建物名」のバリデーション
   validates :building_name, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: "is invalid. Input full-width characters."}
   # 「都道府県」のバリデーション
-  validates :prefecture_id, numericality: { other_than: 0, message: "can't be blank" }
+  validates :prefectures_id, numericality: { other_than: 0, message: "can't be blank" }
+
+  def save
+    buy = Buy.create(user_id: user_id, item_id: item_id)
+    ShippingAddress.create(postal_code: postal_code, prefectures_id: prefectures_id, city: city, address: address, building_name: building_name, phone_number: phone_number, buy_id: buy.id)
+  end
 
 end
