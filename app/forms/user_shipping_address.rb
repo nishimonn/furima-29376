@@ -12,8 +12,8 @@ class UserShippingAddress
     validates :address, format: { with: /\A[ぁ-んァ-ン一-龥0-9]+\z/, message: "is invalid. Input full-width characters."}
     #「電話番号」のバリデーション
     validates :phone_number, format: { with: /\A[0-9]+\z/, message: "is invalid. Input half-width characters."}
-    #「金額とトークン」のバリデーション
-    validates :price, :token
+    #「トークン」のバリデーション
+    validates :token
   end
   #「建物名」のバリデーション
   validates :building_name, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: "is invalid. Input full-width characters."}
