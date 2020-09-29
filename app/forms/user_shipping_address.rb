@@ -15,8 +15,6 @@ class UserShippingAddress
     #「トークン」のバリデーション
     validates :token
   end
-  #「建物名」のバリデーション
-  validates :building_name, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: "is invalid. Input full-width characters."}
   # 「都道府県」のバリデーション
   validates :prefectures_id, numericality: { other_than: 0, message: "can't be blank" }
 
