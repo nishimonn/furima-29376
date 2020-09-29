@@ -11,7 +11,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :days_until_shipping
 
   with_options presence: true do
-    validates :items_name, :items_description, :selling_price, :user_id, :category_id, :items_condition_id, :shipping_fee_burden_id, :shipping_region_id, :days_until_shipping_id
+    validates :items_name, :image,:items_description, :selling_price, :user_id, :category_id, :items_condition_id, :shipping_fee_burden_id, :shipping_region_id, :days_until_shipping_id
   end
 
   with_options numericality: { other_than: 1} do
