@@ -9,7 +9,7 @@ class UserShippingAddress
     #「市区町村」のバリデーション
     validates :city, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: "is invalid. Input full-width characters."}
     #「番地」のバリデーション
-    validates :address, format: { with: /\A[ぁ-んァ-ン一-龥0-9]+\z/, message: "is invalid. Input full-width characters."}
+    validates :address
     #「電話番号」のバリデーション
     validates :phone_number, format: { with: /\A[0-9]+\z/, message: "is invalid. Input half-width characters."}
     #「トークン」のバリデーション
