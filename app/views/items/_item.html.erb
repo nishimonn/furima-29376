@@ -1,0 +1,12 @@
+<div class='main'>
+  <div class='item-contents'>
+    <ul class='item-lists'>
+      <li class='list'>
+        <%= link_to item_path(item) do %>
+        <div class='item-img-content'>
+          <%= image_tag item.image, class: 'item-img' %>
+        </div>
+        <% end %>
+    </li>
+  </div>
+</div>
